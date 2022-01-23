@@ -28,6 +28,7 @@
 		18FFF006279943BC00F07734 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFF005279943BC00F07734 /* Constant.swift */; };
 		18FFF00A27996AA000F07734 /* PlaceSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFF00927996AA000F07734 /* PlaceSelectionVC.swift */; };
 		1F17785126740BEBBAF56ECB /* Pods_Jaykishan_Weather_App_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02B6C3D1C567F4BEBE2381C7 /* Pods_Jaykishan_Weather_App_Demo.framework */; };
+		F13DE179279C728900C7FB3F /* WeatherDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13DE178279C728900C7FB3F /* WeatherDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		18FFF00927996AA000F07734 /* PlaceSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSelectionVC.swift; sourceTree = "<group>"; };
 		220C081765D7A062A1177087 /* Pods-Jaykishan_Weather_App_Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaykishan_Weather_App_Demo.release.xcconfig"; path = "Target Support Files/Pods-Jaykishan_Weather_App_Demo/Pods-Jaykishan_Weather_App_Demo.release.xcconfig"; sourceTree = "<group>"; };
 		2DB5C02F7534AAC1CC54C3E3 /* Pods-Jaykishan_Weather_App_Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jaykishan_Weather_App_Demo.debug.xcconfig"; path = "Target Support Files/Pods-Jaykishan_Weather_App_Demo/Pods-Jaykishan_Weather_App_Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		F13DE178279C728900C7FB3F /* WeatherDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +132,7 @@
 				18E055DD27997F010001ABFD /* SKActivityIndicatorViewStyle.swift */,
 				18E055DE27997F010001ABFD /* SKActivityIndicatorView.swift */,
 			);
-			name = SKActivityIndicatorView;
-			path = "../../../../Downloads/Fax-main/Fax/Resources/SKActivityIndicatorView";
+			path = SKActivityIndicatorView;
 			sourceTree = "<group>";
 		};
 		18E055E127997F610001ABFD /* Reachability */ = {
@@ -202,6 +203,7 @@
 			children = (
 				18FFEFF12799425D00F07734 /* HomeScreenVC.swift */,
 				18FFF00927996AA000F07734 /* PlaceSelectionVC.swift */,
+				F13DE178279C728900C7FB3F /* WeatherDetailVC.swift */,
 			);
 			path = ViewContorllers;
 			sourceTree = "<group>";
@@ -347,6 +349,7 @@
 				18E055E027997F010001ABFD /* SKActivityIndicatorView.swift in Sources */,
 				18FFEFEE2799425D00F07734 /* AppDelegate.swift in Sources */,
 				182405CC279972FE00037068 /* NetworkManager.swift in Sources */,
+				F13DE179279C728900C7FB3F /* WeatherDetailVC.swift in Sources */,
 				18E055E427997F610001ABFD /* Reachability.swift in Sources */,
 				18E055D427997C3A0001ABFD /* Weather.swift in Sources */,
 				18FFF00A27996AA000F07734 /* PlaceSelectionVC.swift in Sources */,

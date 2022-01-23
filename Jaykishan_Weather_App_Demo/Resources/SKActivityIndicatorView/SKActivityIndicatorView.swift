@@ -22,7 +22,7 @@ public class SKActivityIndicator: NSObject {
     fileprivate var statusLabelFont        : UIFont                 = UIFont.systemFont(ofSize  : 16, weight  : .semibold)
     fileprivate var statusTextColor        : UIColor                = UIColor.black
     fileprivate var spinnerColor           : UIColor                = UIColor.gray
-    fileprivate var backgroundViewColor    : UIColor                = UIColor.hexStringToUIColorWithAlpha(hex: "E5E5E5", alpha: 0)
+    fileprivate var backgroundViewColor    : UIColor                = UIColor.clear
     fileprivate var activityIndicatorStyle : ActivityIndicatorStyle = .defaultSpinner
     fileprivate var activityIndicatorTranslucency : UIBlurEffect.Style           = .extraLight
     
@@ -40,8 +40,6 @@ public class SKActivityIndicator: NSObject {
         let delegate: UIApplicationDelegate = UIApplication.shared.delegate!
         if let windowObj = delegate.window {
             window = windowObj
-        } else {
-            window = APP_DELEGATE.window
         }
         statusLabel = nil
         backgroundView = nil
@@ -106,7 +104,7 @@ public class SKActivityIndicator: NSObject {
             activityIndicatorView!.layer.cornerRadius = 8
             activityIndicatorView!.layer.masksToBounds = true
             activityIndicatorView!.isTranslucent = false
-            activityIndicatorView?.barTintColor = UIColor.hexStringToUIColorWithAlpha(hex: "E5E5E5", alpha: 0)
+            activityIndicatorView?.barTintColor = UIColor.clear
             registerForKeyboardNotificatoins()
         }
         

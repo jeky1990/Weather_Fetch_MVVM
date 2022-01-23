@@ -44,4 +44,15 @@ class CommonFunction : NSObject {
             aViewController.present(alertController, animated: true, completion:nil)
         }
     }
+    
+    class func temperatureFormatter(temp: Double) -> String {
+        let measurement = Measurement(value: temp, unit: UnitTemperature.celsius)
+
+        let measurementFormatter = MeasurementFormatter()
+        measurementFormatter.unitStyle = .medium
+        measurementFormatter.numberFormatter.maximumFractionDigits = 1
+        measurementFormatter.unitOptions = .providedUnit
+
+        return measurementFormatter.string(from: measurement)
+    }
 }

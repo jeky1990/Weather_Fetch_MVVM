@@ -14,6 +14,7 @@ let MAIN_STORYBOARD = UIStoryboard(name: "Main", bundle: nil)
 //MARK:-VC Identifires
 let HOME_VC_IDNET = "HomeScreenVC"
 let PLACE_SEL_V_IDENT = "PlaceSelectionVC"
+let WEATHER_DETAIL_VC_IDENT = "WeatherDetailVC"
 
 //URL
 let BASE_URL = "http://api.openweathermap.org"

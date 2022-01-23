@@ -40,13 +40,27 @@ extension HomeScreenVC : UITableViewDelegate, UITableViewDataSource {
             if self.weatherDataList.count > indexPath.row {
                 let wdata = self.weatherDataList[indexPath.row]
                 cell.textLabel?.text = wdata.name
-                cell.detailTextLabel?.text = String(wdata.main?.temp ?? 0.0)
+                cell.detailTextLabel?.text = CommonFunction.temperatureFormatter(temp: wdata.main?.temp ?? 0.0)
             }
             
             return cell
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.weatherDataList.count > indexPath.row {
+            let wdata = self.weatherDataList[indexPath.row]
+            
+            if let nav = MAIN_STORYBOARD.instantiateViewController(withIdentifier: WEATHER_DETAIL_VC_IDENT) as? WeatherDetailVC {
+                
+                nav.weatheData = wdata
+                
+                self.navigationController?.pushViewController(nav, animated: true)
+            }
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
