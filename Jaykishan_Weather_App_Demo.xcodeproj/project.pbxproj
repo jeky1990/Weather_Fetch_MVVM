@@ -29,6 +29,7 @@
 		18FFF00A27996AA000F07734 /* PlaceSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFF00927996AA000F07734 /* PlaceSelectionVC.swift */; };
 		1F17785126740BEBBAF56ECB /* Pods_Jaykishan_Weather_App_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02B6C3D1C567F4BEBE2381C7 /* Pods_Jaykishan_Weather_App_Demo.framework */; };
 		F13DE179279C728900C7FB3F /* WeatherDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13DE178279C728900C7FB3F /* WeatherDetailVC.swift */; };
+		F1611606279E6DA500667407 /* Disk in Frameworks */ = {isa = PBXBuildFile; productRef = F1611605279E6DA500667407 /* Disk */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F17785126740BEBBAF56ECB /* Pods_Jaykishan_Weather_App_Demo.framework in Frameworks */,
+				F1611606279E6DA500667407 /* Disk in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +246,9 @@
 			dependencies = (
 			);
 			name = Jaykishan_Weather_App_Demo;
+			packageProductDependencies = (
+				F1611605279E6DA500667407 /* Disk */,
+			);
 			productName = Jaykishan_Weather_App_Demo;
 			productReference = 18FFEFEA2799425D00F07734 /* Jaykishan_Weather_App_Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -272,6 +277,9 @@
 				Base,
 			);
 			mainGroup = 18FFEFE12799425D00F07734;
+			packageReferences = (
+				F1611604279E6DA500667407 /* XCRemoteSwiftPackageReference "Disk" */,
+			);
 			productRefGroup = 18FFEFEB2799425D00F07734 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -582,6 +590,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F1611604279E6DA500667407 /* XCRemoteSwiftPackageReference "Disk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/saoudrizwan/Disk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F1611605279E6DA500667407 /* Disk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F1611604279E6DA500667407 /* XCRemoteSwiftPackageReference "Disk" */;
+			productName = Disk;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		18FFEFF62799425D00F07734 /* Jaykishan_Weather_App_Demo.xcdatamodeld */ = {

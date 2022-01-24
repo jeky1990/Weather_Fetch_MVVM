@@ -1,6 +1,7 @@
 
 import SystemConfiguration
 import Foundation
+import Network
 
 public enum ReachabilityError: Error {
     case FailedToCreateWithAddress(sockaddr_in)
@@ -268,5 +269,30 @@ fileprivate extension Reachability {
         } else {
             return SCNetworkReachabilityFlags()
         }
+    }
+}
+
+class NetworkMonitor {
+    
+    static let shared = NetworkMonitor()
+
+    let monitor = NWPathMonitor()
+
+    func startMonitoring() {
+        monitor.pathUpdateHandler = { path in
+            if path.status == .unsatisfied {
+                NotificationCenter.default.post(name: INTERNET_OBSERVER, object: nil, userInfo: ["availbele" : true])
+            } else {
+                print("No connection.")
+                NotificationCenter.default.post(name: INTERNET_OBSERVER, object: nil, userInfo: ["availbele" : false])
+            }
+        }
+
+        let queue = DispatchQueue(label: "NetworkMonitor")
+        monitor.start(queue: queue)
+    }
+
+    func stopMonitoring() {
+        monitor.cancel()
     }
 }

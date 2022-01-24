@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Disk
 
 class HomeScreenVC : UIViewController {
 
@@ -21,10 +22,42 @@ class HomeScreenVC : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.fetchData()
+        self.setUpObserver()
     }
-
-
+    
+    func fetchData() {
+        do {
+            let local_Data = try? Disk.retrieve(WEATHER_DATA_FILE_NAME, from: .documents, as: [WeatherData].self)
+            if local_Data != nil {
+                self.weatherDataList = local_Data ?? []
+                CommonFunction.fetchDataFromLocalParam { data in
+                    DispatchQueue.main.async {
+                        self.weatherDataList = data?.list ?? []
+                    }
+                }
+            }
+        }
+    }
+    
+    func setUpObserver() {
+        NotificationCenter.default.removeObserver(self, name: INTERNET_OBSERVER, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.changeInternet(notification:)), name: INTERNET_OBSERVER, object: nil)
+    }
+    
+    @objc func changeInternet(notification: NSNotification) {
+        if let info = notification.userInfo {
+            if let availbele = info["availbele"] as? Bool {
+                if availbele {
+                    CommonFunction.fetchDataFromLocalParam { data in
+                        DispatchQueue.main.async {
+                            self.weatherDataList = data?.list ?? []
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 //MARK:- TableView Delegate and DataSource
@@ -80,8 +113,14 @@ extension HomeScreenVC {
 
 //MARK:- Place VC delegate
 extension HomeScreenVC  : PlaceSelectionVCDelegate {
-    func dataFatched(wData: weatherDataList?) {
+    func dataFatched(wData: weatherDataList?, paramData : urlParam?) {
         self.weatherDataList = wData?.list ?? []
+        do {
+            try Disk.save(self.weatherDataList, to: .documents, as: WEATHER_DATA_FILE_NAME)
+            try Disk.save(paramData, to: .documents, as: WEATHER_PARAM_NAME)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 

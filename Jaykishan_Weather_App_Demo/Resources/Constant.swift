@@ -21,3 +21,8 @@ let BASE_URL = "http://api.openweathermap.org"
 
 //KEY
 let VALIDATE_API_KEY = "ddaaf58d56715b6bd266e810e294ccc2"
+
+let WEATHER_DATA_FILE_NAME = "weather_data.json"
+let WEATHER_PARAM_NAME = "urlParameter.json"
+
+let INTERNET_OBSERVER = Notification.Name(rawValue: "INTERNET.OBSERVER")

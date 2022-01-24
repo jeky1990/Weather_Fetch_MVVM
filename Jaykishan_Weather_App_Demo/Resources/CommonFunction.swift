@@ -7,6 +7,12 @@
 
 import Foundation
 import UIKit
+import Disk
+
+struct urlParam : Codable {
+    var lat : Double?
+    var lng : Double?
+}
 
 let sharedInstanceCF = CommonFunction()
 
@@ -17,6 +23,11 @@ class CommonFunction : NSObject {
     class func isInternetAvailable() -> Bool
     {
         let reachability:Reachability = Reachability()!
+        do {
+            try reachability.startNotifier()
+        } catch let err {
+            print(err.localizedDescription)
+        }
         return reachability.isReachable
     }
     
@@ -54,5 +65,33 @@ class CommonFunction : NSObject {
         measurementFormatter.unitOptions = .providedUnit
 
         return measurementFormatter.string(from: measurement)
+    }
+    
+    class func fetchDataFromLocalParam(completion : @escaping (_ data : weatherDataList?) -> ()) {
+        do {
+            let paramData = try? Disk.retrieve(WEATHER_PARAM_NAME, from: .documents, as: urlParam.self)
+            
+            if paramData != nil {
+                if CommonFunction.isInternetAvailable() {
+                    
+                    SKActivityIndicator.show()
+                    
+                    let weatheVM = WeatherDataViewModel()
+                    
+                    let param = [ "lat" : paramData?.lat ?? 0.0,
+                                  "lon" : paramData?.lng ?? 0.0,
+                                  "units" : "metric",
+                                  "cnt" : 15,
+                                  "appid" : VALIDATE_API_KEY] as [String : Any]
+                    
+                    weatheVM.fetchWeatherInfoAPI(params: param) { status, msg in
+                        DispatchQueue.main.async {
+                            SKActivityIndicator.dismiss()
+                            completion(weatheVM.weatherData)
+                        }
+                    }
+                }
+            }
+        }
     }
 }

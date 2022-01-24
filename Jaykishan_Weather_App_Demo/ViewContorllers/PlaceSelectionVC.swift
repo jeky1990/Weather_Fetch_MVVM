@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 
 protocol PlaceSelectionVCDelegate : AnyObject {
-    func dataFatched(wData : weatherDataList?)
+    func dataFatched(wData : weatherDataList?, paramData : urlParam?)
 }
 
 class PlaceSelectionVC: UIViewController {
@@ -157,7 +157,12 @@ extension PlaceSelectionVC {
                     DispatchQueue.main.async {
                         SKActivityIndicator.dismiss()
                         if status {
-                            self.delegate?.dataFatched(wData: self.weatherDataVM.weatherData)
+                            do {
+                                let data = try? JSONSerialization.data(withJSONObject: param, options: .fragmentsAllowed)
+                                self.delegate?.dataFatched(wData: self.weatherDataVM.weatherData,
+                                paramData: urlParam(lat: self.previousLocation?.coordinate.latitude ?? 0.0, lng: self.previousLocation?.coordinate.longitude ?? 0.0))
+                            }
+                            
                             self.navigationController?.popViewController(animated: true)
                         } else {
                             CommonFunction.showAlertMessageWithTitle(aStrTitle: "Alert",
